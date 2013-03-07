@@ -1,0 +1,21 @@
+#!/usr/bin/python
+
+from servo.config import ServoConfig
+from servo.network import ServoNetwork
+
+config  = ServoConfig()
+network = ServoNetwork(config)
+
+tree = {}
+for ident in config.ids:
+	d = network.get_servo(ident)
+	tree[ident] = {"current_position": d.current_position, "label" : d.config["label"]}
+
+import sys
+if len(sys.argv) > 1 and sys.argv[1] == "-s":
+	for v in tree.values():
+		print "%s: %s" % (v["label"], v["current_position"])
+else:
+	import json
+	print json.dumps(tree, sort_keys=True, indent=2)
+

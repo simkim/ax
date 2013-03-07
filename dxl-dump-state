@@ -1,0 +1,16 @@
+#!/usr/bin/python
+
+from servo.config import ServoConfig
+from servo.network import ServoNetwork
+
+config  = ServoConfig()
+network = ServoNetwork(config)
+
+tree = {} 
+for ident in config.ids:
+	d = network.get_servo(ident)
+	tree[ident] = {"label": d.config["label"],"current_position": d.current_position, "torque_enable": d.torque_enable, "torque_limit": d.torque_limit, "max_torque": d.max_torque, "moving_speed": d.moving_speed, "goal_position": d.goal_position, "current_speed" : d.current_speed, "current_temperature" : d.current_temperature, "current_voltage" : d.current_voltage, "current_load": d.current_load, "model_number" : d.model_number, "moving" : d.moving}
+
+import json
+print json.dumps(tree, sort_keys=True, indent=2)
+

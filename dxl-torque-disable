@@ -1,0 +1,14 @@
+#!/usr/bin/python
+
+from servo.config import ServoConfig
+from servo.network import ServoNetwork
+
+config  = ServoConfig()
+network = ServoNetwork(config)
+
+import time
+for ident in config.ids:
+	print "Disable torque for %s" % ident
+	d = network.get_servo(ident)
+	d.torque_enable = False
+network.net.synchronize()

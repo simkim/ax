@@ -1,0 +1,25 @@
+#!/usr/bin/python
+
+from servo.config import ServoConfig
+from servo.network import ServoNetwork
+from clize import clize
+config  = ServoConfig()
+network = ServoNetwork(config)
+
+@clize
+def set_position(ident, goal, moving_speed=0, max_torque=1023):
+	d = network.get_servo(int(ident))
+	print "Current position : %s" % d.current_position
+	print "Current temperature : %s" % d.current_temperature
+	d.synchronized = False
+	d.torque_enable = True
+	d.moving_speed = int(moving_speed)
+	d.max_torque = int(max_torque)
+	d.torque_limit = int(max_torque)
+	d.goal_position = int(goal)
+	while abs(d.current_position - d.goal_position) > 10:
+		print "position", d.current_position
+
+if __name__ == '__main__':
+	import sys
+	set_position(*sys.argv)

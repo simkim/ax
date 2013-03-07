@@ -1,0 +1,9 @@
+#!/usr/bin/python
+
+from servo.config import ServoConfig
+from servo.network import ServoNetwork
+
+config  = ServoConfig()
+network = ServoNetwork(config)
+
+print network.net.ping(1)
