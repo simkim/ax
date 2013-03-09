@@ -1,0 +1,25 @@
+#!/usr/bin/python
+from clize import clize, run
+
+@clize
+def wheel(ident, speed=1023):
+	""" Test wheel mode
+
+	ident: Servo id (1, 253)
+	speed: Speed of rotation
+
+	"""
+	from servo.config import ServoConfig
+	from servo.network import ServoNetwork
+
+	config  = ServoConfig()
+	network = ServoNetwork(config)
+
+	d = network.get_servo(int(ident))
+	d.wheel_mode = True
+	d.torque_enable = True
+	d.cw_angle_limit = 0
+	d.ccw_angle_limit = 0
+	d.moving_speed = int(speed)
+
+run(wheel)

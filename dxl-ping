@@ -6,4 +6,4 @@ from servo.network import ServoNetwork
 config  = ServoConfig()
 network = ServoNetwork(config)
 
-print network.net.ping(1)
+print network.net.ping(2)

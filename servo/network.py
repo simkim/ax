@@ -18,6 +18,13 @@ class ServoNetwork:
 		self.config = config
 	def get_servo(self, ident):
 		d = dynamixel.Dynamixel(ident, self.net)
+		d.synchronized = False
 		servo_config = self.config.get_config_for_servo_id(ident)
+		d.config = servo_config
+		return d
+	def get_servo_by_label(self, label):
+		servo_config = self.config.get_config_for_servo_label(label)
+		assert servo_config
+		d = dynamixel.Dynamixel(servo_config["id"], self.net)
 		d.config = servo_config
 		return d

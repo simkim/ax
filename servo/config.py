@@ -11,6 +11,10 @@ class ServoConfig(ConfigParser.SafeConfigParser):
 			self.ids.append(_id)
 		self.load_config_for_servos()
 
+	def get_config_for_servo_label(self, label):
+		config = self.servo_by_label.get(label)
+		return config
+
 	def get_config_for_servo_id(self, ident):
 		config = self.servo_by_id.get(int(ident))
 		if not config:
