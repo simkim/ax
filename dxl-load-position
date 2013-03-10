@@ -1,0 +1,17 @@
+#!/usr/bin/python
+
+from clize import clize, run
+
+from servo.config import ServoConfig
+from servo.network import ServoNetwork
+from servo.motion import Position
+
+config  = ServoConfig()
+network = ServoNetwork(config)
+
+@clize
+def load_position(filename):
+	p = Position(filename)
+	p(network)
+
+run(load_position)

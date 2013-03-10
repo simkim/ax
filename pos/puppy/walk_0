@@ -1,0 +1,62 @@
+{
+  "1": {
+    "current_position": 638, 
+    "label": "hip"
+  }, 
+  "4": {
+    "current_position": 476, 
+    "label": "fr-r-h"
+  }, 
+  "5": {
+    "current_position": 519, 
+    "label": "fr-l-h"
+  }, 
+  "6": {
+    "current_position": 479, 
+    "label": "fr-r-m"
+  }, 
+  "7": {
+    "current_position": 510, 
+    "label": "fr-l-m"
+  }, 
+  "8": {
+    "current_position": 459, 
+    "label": "fr-r-l"
+  }, 
+  "9": {
+    "current_position": 451, 
+    "label": "fr-l-l"
+  }, 
+  "10": {
+    "current_position": 533, 
+    "label": "ba-l-h"
+  }, 
+  "11": {
+    "current_position": 512, 
+    "label": "ba-r-h"
+  }, 
+  "12": {
+    "current_position": 670, 
+    "label": "ba-l-m"
+  }, 
+  "13": {
+    "current_position": 340, 
+    "label": "ba-r-m"
+  }, 
+  "14": {
+    "current_position": 580, 
+    "label": "ba-l-l"
+  }, 
+  "15": {
+    "current_position": 427, 
+    "label": "ba-r-l"
+  }, 
+  "16": {
+    "current_position": 348, 
+    "label": "neck"
+  }, 
+  "17": {
+    "current_position": 748, 
+    "label": "head"
+  }
+}
