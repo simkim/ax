@@ -12,10 +12,10 @@ for ident in network.config.ids:
 	d.torque_enable = 1
 	d.moving_speed = 1023
 
-walk_0 = Position("walk_0")
-walk_1 = Position("walk_1")
-walk_2 = Position("walk_2")
-walk_3 = Position("walk_3")
+walk_0 = Position("pos/puppy/walk_0")
+walk_1 = Position("pos/puppy/walk_1")
+walk_2 = Position("pos/puppy/walk_2")
+walk_3 = Position("pos/puppy/walk_3")
 
 import time
 while True:
