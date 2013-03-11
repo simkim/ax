@@ -1,9 +1,16 @@
 #!/usr/bin/python
 
-from servo.config import ServoConfig
-from servo.network import ServoNetwork
+from clize import clize, run
 
-config  = ServoConfig()
-network = ServoNetwork(config)
+@clize
+def ping(ident):
 
-print network.net.ping(2)
+	from servo.config import ServoConfig
+	from servo.network import ServoNetwork
+
+	config  = ServoConfig()
+	network = ServoNetwork(config)
+
+	print network.net.ping(int(ident))
+
+run(ping)

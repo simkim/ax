@@ -1,13 +1,19 @@
 #!/usr/bin/python
 
-from servo.config import ServoConfig
-from servo.network import ServoNetwork
+from clize import clize, run
 
-config  = ServoConfig()
-network = ServoNetwork(config)
+@clize
+def scan(max_ident=20):
+	from servo.config import ServoConfig
+	from servo.network import ServoNetwork
 
-network.net.scan(1, 20)
-l = network.net.get_dynamixels()
-for d in l:
-	print d.id
+	config  = ServoConfig()
+	network = ServoNetwork(config)
 
+	print "Scan up to %s" % max_ident
+	network.net.scan(1, int(max_ident))
+	l = network.net.get_dynamixels()
+	for d in l:
+		print d.id
+
+run(scan)
