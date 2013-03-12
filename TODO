@@ -1,0 +1,5 @@
+- write a setup.py to produce a dev env where script are in path
+- clize every script
+- Implement and use SyncWrite when needed
+- Implement constraint config for a model (cw/ccw angle limit) and a script to produce it by inverse kinematic (Moving the motors extends the limits)
+- All state/position/constraint code must be independant of servo id

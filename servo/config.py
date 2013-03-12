@@ -3,6 +3,7 @@ import ConfigParser
 class ServoConfig(ConfigParser.SafeConfigParser):
 	def __init__(self, filename="ax.ini"):
 		ConfigParser.SafeConfigParser.__init__(self)
+		filename = self.find_config_file(filename)
 		self.readfp(open(filename))
 		ids = self.get("net", "id")
 		self.ids = []
@@ -10,7 +11,15 @@ class ServoConfig(ConfigParser.SafeConfigParser):
 			_id = int(_id)
 			self.ids.append(_id)
 		self.load_config_for_servos()
-
+	def find_config_file(self, filename):
+		import os
+		for loc in os.curdir, os.path.expanduser("~")+"/.", "/etc/servo", os.environ.get("SERVO_CONF"):
+			if not loc:
+				continue
+			b_filename = loc+"/"+filename
+			if os.access(b_filename, os.R_OK):
+				return b_filename
+		raise Exception, "No config file found"
 	def get_config_for_servo_label(self, label):
 		config = self.servo_by_label.get(label)
 		return config

@@ -7,10 +7,7 @@ from servo.motion import Position
 config  = ServoConfig()
 network = ServoNetwork(config)
 
-for ident in network.config.ids:
-	d = network.get_servo(int(ident))
-	d.torque_enable = 1
-	d.moving_speed = 1023
+network.apply_all(torque_enable=1, moving_speed=1023)
 
 walk_0 = Position("pos/puppy/walk_0")
 walk_1 = Position("pos/puppy/walk_1")

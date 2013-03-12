@@ -28,3 +28,8 @@ class ServoNetwork:
 		d = dynamixel.Dynamixel(servo_config["id"], self.net)
 		d.config = servo_config
 		return d
+	def apply_all(self, **kw):
+		for ident in self.config.ids:
+			d = self.get_servo(int(ident))
+			for k, v in kw.items():
+				setattr(d, k, v)

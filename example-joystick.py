@@ -1,6 +1,5 @@
 #!/usr/bin/python
-from pygame import *
-import usb
+from pygame import joystick, init, display, event
 import os, sys
 
 print "init pygame"

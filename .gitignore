@@ -1,1 +1,3 @@
 *.pyc
+servo.egg-info
+build
