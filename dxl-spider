@@ -1,0 +1,56 @@
+#!/usr/bin/python
+
+from clize import clize, run
+
+@clize
+def spider():
+
+	from servo.config import ServoConfig
+	from servo.network import ServoNetwork
+	from servo.spider import KingSpider
+
+	config  = ServoConfig()
+	network = ServoNetwork(config)
+	spider = KingSpider(network)
+	spider.reset()
+	import time
+	time.sleep(1)
+	TIME_BETWEEN_UPDOWN=0.3
+	TIME_BETWEEN_FRONT_BACK=0.1
+	TIME_BETWEEN_MOUVEMENT=0.3
+	while 1:
+		spider.leg_f_l.down()
+		spider.leg_b_l.down()
+		spider.leg_m_r.down()
+		time.sleep(TIME_BETWEEN_UPDOWN)
+		spider.leg_f_r.up()
+		spider.leg_b_r.up()
+		spider.leg_m_l.up()
+		time.sleep(TIME_BETWEEN_MOUVEMENT)
+		spider.leg_f_r.front()
+		spider.leg_b_r.front()
+		spider.leg_m_l.front()
+		time.sleep(TIME_BETWEEN_FRONT_BACK)
+		spider.leg_f_l.back()
+		spider.leg_b_l.back()
+		spider.leg_m_r.back()
+		time.sleep(TIME_BETWEEN_MOUVEMENT)
+		spider.leg_f_r.down()
+		spider.leg_b_r.down()
+		spider.leg_m_l.down()
+		time.sleep(TIME_BETWEEN_UPDOWN)
+		spider.leg_f_l.up()
+		spider.leg_b_l.up()
+		spider.leg_m_r.up()
+		time.sleep(TIME_BETWEEN_MOUVEMENT)
+		spider.leg_f_r.back()
+		spider.leg_b_r.back()
+		spider.leg_m_l.back()
+		time.sleep(TIME_BETWEEN_FRONT_BACK)
+		spider.leg_f_l.front()
+		spider.leg_b_l.front()
+		spider.leg_m_r.front()
+		time.sleep(TIME_BETWEEN_MOUVEMENT)
+		
+	
+run(spider)

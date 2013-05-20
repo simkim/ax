@@ -16,6 +16,8 @@ class ServoNetwork:
 				raise
 		self.net = dynamixel.DynamixelNetwork(s)
 		self.config = config
+	def __getitem__(self, ident):
+		return self.get_servo(ident)
 	def get_servo(self, ident):
 		d = dynamixel.Dynamixel(ident, self.net)
 		d.synchronized = False
