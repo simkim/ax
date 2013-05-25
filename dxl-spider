@@ -15,9 +15,9 @@ def spider():
 	spider.reset()
 	import time
 	time.sleep(1)
-	TIME_BETWEEN_UPDOWN=0.3
-	TIME_BETWEEN_FRONT_BACK=0.1
-	TIME_BETWEEN_MOUVEMENT=0.3
+	TIME_BETWEEN_UPDOWN=0.0
+	TIME_BETWEEN_FRONT_BACK=0.0
+	TIME_BETWEEN_MOUVEMENT=0.1
 	while 1:
 		spider.leg_f_l.down()
 		spider.leg_b_l.down()

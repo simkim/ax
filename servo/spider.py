@@ -2,9 +2,10 @@
 # knee
 # heel
 
-HIP_TURN_SHIFT=130
+HIP_TURN_SHIFT=90
 HIP_REST_SHIFT=128
 LEG_REST_SHIFT=250
+KNEE_UP_FACTOR=1.6
 
 FL_RIGHT=1
 FL_LEFT=2
@@ -59,7 +60,7 @@ class Leg:
 	def up(self):
 		if self.disabled:
 			return
-		self.knee_d.goal_position =  512 + int(2 * self.leg_rest_shift())
+		self.knee_d.goal_position =  512 + int(KNEE_UP_FACTOR * self.leg_rest_shift())
 		self.heel_d.goal_position = 512 + int(1.2 * self.leg_rest_shift())
 	def down(self):
 		if self.disabled:
@@ -82,14 +83,14 @@ class Leg2(Leg):
 	def up(self):
 		if self.disabled:
 			return
-		self.knee_d.goal_position = 512 + int(2 * self.leg_rest_shift())
+		self.knee_d.goal_position = 512 + int(KNEE_UP_FACTOR * self.leg_rest_shift())
 	def down(self):
 		if self.disabled:
 			return
 		self.knee_d.goal_position = 512 + self.leg_rest_shift()
 
 class Spider:
-	moving_speed = 150
+	moving_speed = 0
 	def __init__(self, leg_f_l, leg_f_r, leg_m_l, leg_m_r, leg_b_l, leg_b_r):
 		self.leg_f_l = leg_f_l
 		self.leg_f_r = leg_f_r
@@ -102,12 +103,12 @@ class Spider:
 class KingSpider(Spider):
 	def __init__(self, net):
 		Spider.__init__(self,
-			Leg2(self, net[2], net[4], net[6], FL_LEFT | FL_FRONT | FL_REVERSE),
-			Leg2(self, net[1], net[3], net[5], FL_RIGHT | FL_FRONT),
+			Leg(self, net[2], net[4], net[6], FL_LEFT | FL_FRONT | FL_REVERSE),
+			Leg(self, net[1], net[3], net[5], FL_RIGHT | FL_FRONT),
 			Leg(self, net[8], net[10], net[12], FL_LEFT | FL_MIDDLE),
 			Leg(self, net[7], net[9], net[11], FL_RIGHT | FL_MIDDLE | FL_REVERSE),
-			Leg2(self, net[14], net[16], net[18], FL_LEFT | FL_BACK),
-			Leg2(self, net[13], net[15], net[17], FL_RIGHT | FL_BACK | FL_REVERSE)
+			Leg(self, net[14], net[16], net[18], FL_LEFT | FL_BACK),
+			Leg(self, net[13], net[15], net[17], FL_RIGHT | FL_BACK | FL_REVERSE)
 		)
 	def reset(self):
 		for leg in self.legs:
